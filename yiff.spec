@@ -15,6 +15,7 @@ Patch:		%{name}-2.14.5.build.patch.bz2
 Url: 		http://wolfpack.twu.net/YIFF/index.html
 BuildRequires:	gtk+-devel
 BuildRequires:	zlib1-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 YIFF is a high performance, stable, and fully  documented sound server for UNIX
