@@ -1,6 +1,6 @@
 %define	name	yiff
 %define	version 2.14.5
-%define release %mkrel 5
+%define release %mkrel 6
 %define major	%{version}
 %define	libname %mklibname %name %major
 
@@ -58,7 +58,7 @@ pushd libY2
 %make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS -fPIC"
 popd
 pushd yiff
-%make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS"
+%make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS -DOSS_BUFFRAG"
 popd
 pushd yiffconfig
 %make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS `gtk-config --cflags`"
