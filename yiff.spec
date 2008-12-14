@@ -1,6 +1,6 @@
 %define	name	yiff
 %define	version 2.14.5
-%define release %mkrel 6
+%define release %mkrel 7
 %define major	%{version}
 %define	libname %mklibname %name %major
 
@@ -10,7 +10,7 @@ Release:	%{release}
 Summary:	YIFF Sound Systems
 License: 	GPL
 Group: 		System/Servers
-Source:		http://wolfpack.twu.net/users/wolfpack/%{name}-%{version}.tar.bz2
+Source0:	http://wolfpack.twu.net/users/wolfpack/%{name}-%{version}.tar.bz2
 Patch:		%{name}-2.14.5.build.patch.bz2
 Url: 		http://wolfpack.twu.net/YIFF/index.html
 BuildRequires:	gtk+-devel
@@ -73,9 +73,34 @@ install -d -m 755 %{buildroot}/%{_sysconfdir}
 install -d -m 755 %{buildroot}/%{_datadir}/icons
 install -d -m 755 %{buildroot}/%{_datadir}/sounds
 make PREFIX=%{buildroot}%{_prefix} YLIB_DIR=%{buildroot}%{_libdir} install
+
 # move man from /usr to /usr/share
 mv %{buildroot}/%{_prefix}/man %{buildroot}/%{_mandir}
+
 install -m 644 yiff/yiffrc %{buildroot}/%{_sysconfdir}
+
+cat >> %{buildroot}%{_bindir}/starty <<EOF
+#!/bin/sh
+
+# Locations of YIFF compoents and resources, make any changes as needed.
+#
+YIFF_PROGRAM=/usr/sbin/yiff
+YIFF_CONFIGURATION=/etc/yiffrc
+
+# Run the YIFF Sound Server, syntax is; "<program> <config_file>"
+# YIFF will put the process into background by itself.
+#
+$YIFF_PROGRAM $YIFF_CONFIGURATION
+
+# Put list of Y hosts that you would like to allow connecting to the
+# Y server in this section. Note that localhost (127.0.0.1) is always
+# given permission to connect when the YIFF server is runned.
+#
+#yhost 127.0.0.1
+
+# Play a sound object on successful startup?
+#yplay -m /usr/share/sounds/startup1.wav
+EOF
 
 %clean
 rm -rf %{buildroot}
@@ -91,7 +116,7 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root)
 %doc AUTHORS INSTALL INSTALL_MANUAL LICENSE README
-%config(noreplace) %{_sysconfdir}/*
+%config(noreplace) %{_sysconfdir}/yiffrc
 %{_sbindir}/*
 %{_bindir}/*
 %{_mandir}/man1/*
@@ -106,8 +131,7 @@ rm -rf %{buildroot}
 %{_libdir}/lib*.so.*
 
 %files -n %{libname}-devel
-%defattr(-, root, root)
+%defattr(-,root,root)
 %doc LICENSE
 %{_includedir}/*
 %_libdir/*.so
-
