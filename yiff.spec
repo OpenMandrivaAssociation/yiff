@@ -1,6 +1,6 @@
 %define	name	yiff
-%define	version 2.14.5
-%define release %mkrel 7
+%define	version 2.14.7
+%define release %mkrel 1
 %define major	%{version}
 %define	libname %mklibname %name %major
 
@@ -10,9 +10,9 @@ Release:	%{release}
 Summary:	YIFF Sound Systems
 License: 	GPL
 Group: 		System/Servers
-Source0:	http://wolfpack.twu.net/users/wolfpack/%{name}-%{version}.tar.bz2
-Patch:		%{name}-2.14.5.build.patch.bz2
 Url: 		http://wolfpack.twu.net/YIFF/index.html
+Source0:	http://wolfsinger.com/~wolfpack/packages/%{name}-%{version}.tar.bz2
+Patch:		%{name}-2.14.5.build.patch.bz2
 BuildRequires:	gtk+-devel
 BuildRequires:	zlib1-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -115,7 +115,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc AUTHORS INSTALL INSTALL_MANUAL LICENSE README
+%doc INSTALL INSTALL_MANUAL LICENSE README
 %config(noreplace) %{_sysconfdir}/yiffrc
 %{_sbindir}/*
 %{_bindir}/*
