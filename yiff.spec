@@ -1,8 +1,9 @@
 %define	name	yiff
 %define	version 2.14.7
-%define release %mkrel 1
+%define release %mkrel 2
 %define major	%{version}
 %define	libname %mklibname %name %major
+%define	develname %mklibname %name -d
 
 Name:		%{name}
 Version:	%{version}
@@ -29,23 +30,19 @@ Run yiffconfig after install to generate a starty script.
 Summary:	Main library for %{name}
 Group:		System/Libraries
 Provides:	%{name} = %{version}-%{release}
-Obsoletes:	libY2
-Provides:	libY2
 
 %description -n %{libname}
 This package contains the library needed to run programs dynamically linked 
 with %{name}.
 
-%package -n %{libname}-devel
+%package -n %{develname}
 Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
-Provides:	lib%{name}-devel = %{version}-%{release}
-Obsoletes:	libY2-devel
-Provides:	libY2-devel
+Obsoletes:	%mklibname %name -d 2.14.5
 
-%description -n %{libname}-devel
+%description -n %{develname}
 This package contains the headers that programmers will need to develop 
 applications which will use %{name}.
 
@@ -130,7 +127,7 @@ rm -rf %{buildroot}
 %doc LICENSE
 %{_libdir}/lib*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %doc LICENSE
 %{_includedir}/*
