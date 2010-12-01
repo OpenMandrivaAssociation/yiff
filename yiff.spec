@@ -1,6 +1,6 @@
 %define	name	yiff
 %define	version 2.14.7
-%define release %mkrel 4
+%define release %mkrel 5
 %define major	%{version}
 %define	libname %mklibname %name %major
 %define	develname %mklibname %name -d
@@ -13,9 +13,9 @@ License: 	GPL
 Group: 		System/Servers
 Url: 		http://wolfpack.twu.net/YIFF/index.html
 Source0:	http://wolfsinger.com/~wolfpack/packages/%{name}-%{version}.tar.bz2
-Patch:		%{name}-2.14.5.build.patch.bz2
+Patch:		%{name}-2.14.5.build.patch
 BuildRequires:	gtk+-devel
-BuildRequires:	zlib1-devel
+BuildRequires:	zlib-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
@@ -48,20 +48,20 @@ applications which will use %{name}.
 
 %prep
 %setup -q
-%patch -p 1
+%patch -p0
 
 %build
 pushd libY2
-%make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS -fPIC"
+%make -f Makefile.Linux CFLAGS="%{optflags} %{ldflags} -fPIC"
 popd
 pushd yiff
-%make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS -DOSS_BUFFRAG"
+%make -f Makefile.Linux CFLAGS="%{optflags} %{ldflags} -DOSS_BUFFRAG"
 popd
 pushd yiffconfig
-%make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS `gtk-config --cflags`"
+%make -f Makefile.Linux CFLAGS="%{optflags} %{ldflags} `gtk-config --cflags`"
 popd
 pushd yiffutils
-%make -f Makefile.Linux CFLAGS="$RPM_OPT_FLAGS -D__USE_BSD"
+%make -f Makefile.Linux CFLAGS="%{optflags} %{ldflags} -D__USE_BSD"
 popd
 
 %install
