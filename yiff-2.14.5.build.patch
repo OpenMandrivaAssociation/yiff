@@ -1,0 +1,80 @@
+--- yiffutils/Makefile.Linux.orig	2010-12-01 14:08:11.000000000 +0000
++++ yiffutils/Makefile.Linux	2010-12-01 14:09:55.000000000 +0000
+@@ -103,48 +103,48 @@
+ all: $(PROGS)
+ 
+ helloworld:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) \
+-	helloworld.c -o helloworld
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) \
++	helloworld.c -o helloworld $(LIB)
+ 
+ yaudiocd:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) \
+ 	string.cpp \
+-	yaudiocd.c -o yaudiocd
++	yaudiocd.c -o yaudiocd $(LIB)
+ 
+ yclientmessage:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) \
+ 	string.cpp \
+-        yclientmessage.c -o yclientmessage
++        yclientmessage.c -o yclientmessage $(LIB)
+ 
+ yhost:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) \
+ 	string.cpp \
+-	yhost.c -o yhost
++	yhost.c -o yhost $(LIB)
+ 
+ ymixer:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) \
+ 	string.cpp \
+-	ymixer.c -o ymixer
++	ymixer.c -o ymixer $(LIB)
+ 
+ yplay:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) \
+ 	disk.cpp string.cpp \
+-	yplay.c -o yplay
++	yplay.c -o yplay $(LIB)
+ 
+ yrecinfo:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) $(STDSRC) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) $(STDSRC) \
+ 	string.cpp \
+-	yrecinfo.c -o yrecinfo
++	yrecinfo.c -o yrecinfo $(LIB)
+ 
+ yset:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) $(STDSRC) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) $(STDSRC) \
+ 	string.cpp \
+-	yset.c -o yset
++	yset.c -o yset $(LIB)
+ 
+ yshutdown:
+-	$(CC) $(CFLAGS) $(INC) $(LIB_DIR) $(LIB) $(STDSRC) \
++	$(CPP) $(CFLAGS) $(INC) $(LIB_DIR) $(STDSRC) \
+ 	string.cpp \
+-	yshutdown.c -o yshutdown
++	yshutdown.c -o yshutdown $(LIB)
+ 
+ 
+ # ########################################################################
+--- yiffconfig/Makefile.Linux.orig	2010-12-01 14:13:59.000000000 +0000
++++ yiffconfig/Makefile.Linux	2010-12-01 14:13:36.000000000 +0000
+@@ -119,7 +119,7 @@
+ # Build Rules:
+ #
+ $(BIN): $(OBJ_C) $(OBJ_CPP)
+-	$(CC) $(OBJ_C) $(OBJ_CPP) -o $(BIN) $(LIB) $(LIB_DIR)
++	$(CPP) $(CFLAGS) $(OBJ_C) $(OBJ_CPP) -o $(BIN) $(LIB) $(LIB_DIR)
+ 
+ all: $(BIN)
+ 
