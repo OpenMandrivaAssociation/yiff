@@ -1,6 +1,6 @@
 %define	name	yiff
 %define	version 2.14.7
-%define release 6
+%define release 7
 %define major	%{version}
 %define	libname %mklibname %name %major
 %define	develname %mklibname %name -d
