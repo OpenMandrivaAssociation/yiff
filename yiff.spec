@@ -12,7 +12,7 @@ Release:	%{release}
 Summary:	YIFF Sound Systems
 License: 	GPL
 Group: 		System/Servers
-Url: 		http://wolfpack.twu.net/YIFF/index.html
+Url: 		https://wolfpack.twu.net/YIFF/index.html
 Source0:	http://wolfsinger.com/~wolfpack/packages/%{name}-%{version}.tar.bz2
 Patch:		%{name}-2.14.5.build.patch
 BuildRequires:	pkgconfig(gtk+)
