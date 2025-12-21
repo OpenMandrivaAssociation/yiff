@@ -15,6 +15,7 @@ Group: 		System/Servers
 Url: 		https://wolfpack.twu.net/YIFF/index.html
 Source0:	http://wolfsinger.com/~wolfpack/packages/%{name}-%{version}.tar.bz2
 Patch:		%{name}-2.14.5.build.patch
+BuildRequires:	make
 BuildRequires:	pkgconfig(gtk+)
 BuildRequires:	zlib-devel
 
